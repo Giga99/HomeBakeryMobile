@@ -27,7 +27,7 @@ fun HomeScreen() {
             appNavigator = appNavigator,
             navHostController = navHostController,
         )
-        HomeBakeryTheme(darkTheme = true) {
+        HomeBakeryTheme(isDarkMode = true) {
             NavHost(
                 navController = navHostController,
                 startDestination = LoginDestination,
