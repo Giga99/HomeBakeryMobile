@@ -7,6 +7,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
+import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+
+val LocalSystemUiController = staticCompositionLocalOf<SystemUiController> {
+    error("LocalSystemUiController is not initialized")
+}
 
 @Composable
 fun HomeBakeryTheme(
@@ -15,6 +22,7 @@ fun HomeBakeryTheme(
 ) {
     val colors = getColorPalette(isDarkMode)
     val typography = remember { Typography.get() }
+    val systemUiController = rememberSystemUiController()
 //    val view = LocalView.current
 //    if (!view.isInEditMode) {
 //        SideEffect {
@@ -34,6 +42,7 @@ fun HomeBakeryTheme(
             LocalContentColor provides colors.text,
             LocalTypography provides typography,
             LocalTextStyle provides typography.body,
+            LocalSystemUiController provides systemUiController,
         ) {
             content()
         }

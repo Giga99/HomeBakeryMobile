@@ -1,54 +1,32 @@
 package com.pki.homebakery.navigation
 
 import androidx.compose.runtime.staticCompositionLocalOf
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.channels.Channel
+import androidx.navigation.NavController
 
 val LocalAppNavigator =
     staticCompositionLocalOf<AppNavigator> { error("AppNavigator is not initialized") }
 
-class AppNavigator {
-    val navigationChannel = Channel<NavigationIntent>(
-        capacity = Int.MAX_VALUE,
-        onBufferOverflow = BufferOverflow.DROP_LATEST,
-    )
+class AppNavigator(private val navController: NavController) {
 
     fun navigateBack(route: String? = null, inclusive: Boolean = false) {
-        navigationChannel.trySend(
-            NavigationIntent.NavigateBack(
-                route = route,
-                inclusive = inclusive
-            )
-        )
+        if (route != null) {
+            navController.popBackStack(route, inclusive)
+        } else {
+            navController.popBackStack()
+        }
     }
 
     fun navigateTo(
         route: String,
         popUpToRoute: String? = null,
-        inclusive: Boolean = false,
+        isInclusive: Boolean = false,
         isSingleTop: Boolean = false,
     ) {
-        navigationChannel.trySend(
-            NavigationIntent.NavigateTo(
-                route = route,
-                popUpToRoute = popUpToRoute,
-                inclusive = inclusive,
-                isSingleTop = isSingleTop,
-            )
-        )
+        navController.navigate(route) {
+            launchSingleTop = isSingleTop
+            popUpToRoute?.let { popUpToRoute ->
+                popUpTo(popUpToRoute) { inclusive = isInclusive }
+            }
+        }
     }
-}
-
-sealed class NavigationIntent {
-    data class NavigateBack(
-        val route: String? = null,
-        val inclusive: Boolean = false,
-    ) : NavigationIntent()
-
-    data class NavigateTo(
-        val route: String,
-        val popUpToRoute: String? = null,
-        val inclusive: Boolean = false,
-        val isSingleTop: Boolean = false,
-    ) : NavigationIntent()
 }

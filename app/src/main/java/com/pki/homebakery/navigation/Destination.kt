@@ -3,11 +3,13 @@ package com.pki.homebakery.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
 import com.pki.homebakery.features.login.LoginDestination
+import com.pki.homebakery.features.splash.SplashDestination
 import kotlinx.serialization.json.Json
 
 const val DESTINATION_PARAM_KEY = "PARAM"
 
 val allDestinations = listOf(
+    SplashDestination,
     LoginDestination,
 )
 
