@@ -1,4 +1,4 @@
-package com.pki.homebakery.features.splash
+package com.pki.homebakery.features.splash.presentation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Icon
@@ -7,7 +7,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import com.pki.homebakery.R
-import com.pki.homebakery.features.login.LoginDestination
+import com.pki.homebakery.features.login.presentation.LoginDestination
 import com.pki.homebakery.navigation.LocalAppNavigator
 import com.pki.homebakery.ui.components.Scaffold
 import com.pki.homebakery.ui.preview.PreviewView

@@ -3,7 +3,7 @@ package com.pki.homebakery
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.compose.rememberNavController
-import com.pki.homebakery.features.splash.SplashDestination
+import com.pki.homebakery.features.splash.presentation.SplashDestination
 import com.pki.homebakery.navigation.AppNavigator
 import com.pki.homebakery.navigation.LocalAppNavigator
 import com.pki.homebakery.navigation.NavHost

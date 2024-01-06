@@ -1,7 +1,7 @@
-package com.pki.homebakery.features.login
+package com.pki.homebakery.features.login.presentation
 
-import com.pki.homebakery.features.login.LoginViewModel.Effect
-import com.pki.homebakery.features.login.LoginViewModel.State
+import com.pki.homebakery.features.login.presentation.LoginViewModel.Effect
+import com.pki.homebakery.features.login.presentation.LoginViewModel.State
 import com.pki.homebakery.ui.InputFieldState
 import com.pki.homebakery.ui.viewmodel.BaseViewModel
 import com.pki.homebakery.ui.viewmodel.UIState

@@ -1,4 +1,4 @@
-package com.pki.homebakery.features.splash
+package com.pki.homebakery.features.splash.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry

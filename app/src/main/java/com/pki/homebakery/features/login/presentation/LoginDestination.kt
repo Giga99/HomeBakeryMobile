@@ -1,4 +1,4 @@
-package com.pki.homebakery.features.login
+package com.pki.homebakery.features.login.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
