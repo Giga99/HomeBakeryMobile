@@ -30,7 +30,7 @@ abstract class BaseViewModel<State, Effect>(
         MutableSharedFlow<StateChange<State>>(extraBufferCapacity = Int.MAX_VALUE)
     private val _stateFlow = MutableStateFlow(initialState)
     val stateFlow = _stateFlow.asStateFlow()
-    val state = stateFlow.value
+    val state get() = stateFlow.value
 
     private val _effectsFlow = MutableSharedFlow<Effect>(extraBufferCapacity = Int.MAX_VALUE)
     val effectsFlow: SharedFlow<Effect> = _effectsFlow.asSharedFlow()

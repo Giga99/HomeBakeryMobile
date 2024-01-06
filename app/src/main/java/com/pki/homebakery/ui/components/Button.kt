@@ -62,7 +62,7 @@ fun Button(
         shape = ButtonDefaults.Shape,
         border = null,
         colors = colors,
-        elevation = ButtonDefaults.elevation(defaultElevation = 0.dp, pressedElevation = 6.dp),
+        elevation = ButtonDefaults.elevation(defaultElevation = 4.dp, pressedElevation = 10.dp),
         contentPadding = ButtonDefaults.ContentPadding,
         interactionSource = interactionSource,
         content = {
@@ -286,7 +286,7 @@ enum class ButtonIconPosition { Start, End }
 
 object ButtonDefaults {
     private val ButtonHorizontalPadding = 16.dp
-    private val ButtonVerticalPadding = 8.dp
+    private val ButtonVerticalPadding = 16.dp
     private val OutlinedBorderSize = 1.dp
 
     val MinWidth = 200.dp
@@ -297,7 +297,7 @@ object ButtonDefaults {
         vertical = ButtonVerticalPadding,
     )
 
-    val Shape @Composable get() = AppShapes.small
+    val Shape @Composable get() = AppShapes.extraLarge
 
     val outlinedBorder: BorderStroke
         @Composable get() = BorderStroke(
@@ -308,9 +308,9 @@ object ButtonDefaults {
     @Composable
     fun buttonColors(
         containerColor: Color = AppColors.action,
-        contentColor: Color = AppColors.white,
-        disabledContainerColor: Color = containerColor.disabled(),
-        disabledContentColor: Color = contentColor,
+        contentColor: Color = AppColors.text,
+        disabledContainerColor: Color = AppColors.darkGrey,
+        disabledContentColor: Color = AppColors.white,
     ): ButtonColors = androidx.compose.material3.ButtonDefaults.buttonColors(
         containerColor = containerColor,
         contentColor = contentColor,

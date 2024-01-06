@@ -21,7 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.choosecruise.mobile.android.ui.utils.elevatedShadow
+import com.pki.homebakery.ui.utils.elevatedShadow
 import com.pki.homebakery.ui.preview.PreviewView
 import com.pki.homebakery.ui.preview.ScreenPreviews
 import com.pki.homebakery.ui.theme.AppColors
