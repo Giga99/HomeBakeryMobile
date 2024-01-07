@@ -21,8 +21,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.pki.homebakery.R
 import com.pki.homebakery.ui.InputFieldState
@@ -72,9 +75,9 @@ fun LoginContent(
         statusBarColor = AppColors.action,
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
-            Text(
-                text = "Welcome",
-                style = AppTypography.h1,
+            Icon(
+                painter = painterResource(R.drawable.ic_welcome),
+                contentDescription = null,
                 modifier = Modifier
                     .align(Alignment.TopCenter)
                     .padding(top = 120.dp)
@@ -133,7 +136,18 @@ fun LoginContent(
                     Text(text = "Login")
                 }
                 Text(
-                    text = "New here? Register!",
+                    text = buildAnnotatedString {
+                        append("New here? ")
+                        withStyle(
+                            AppTypography.note.copy(
+                                color = AppColors.darkGrey,
+                                textDecoration = TextDecoration.Underline
+                            ).toSpanStyle()
+                        ) {
+                            append("Register")
+                        }
+                        append("!")
+                    },
                     style = AppTypography.note,
                     color = AppColors.darkGrey,
                     textAlign = TextAlign.Center,
