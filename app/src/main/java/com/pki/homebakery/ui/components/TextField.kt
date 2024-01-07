@@ -1,6 +1,7 @@
 package com.pki.homebakery.ui.components
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -12,10 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import com.pki.homebakery.ui.utils.elevatedShadow
 import com.pki.homebakery.ui.theme.AppColors
 import com.pki.homebakery.ui.theme.AppShapes
 import com.pki.homebakery.ui.theme.AppTypography
+import com.pki.homebakery.ui.utils.elevatedShadow
 
 @Composable
 fun TextField(
@@ -38,7 +39,9 @@ fun TextField(
     androidx.compose.material3.TextField(
         value = value,
         onValueChange = onValueChange,
-        modifier = modifier.elevatedShadow(10.dp, AppShapes.extraLarge),
+        modifier = modifier
+            .elevatedShadow(10.dp, AppShapes.extraLarge)
+            .errorBorder(isError),
         enabled = enabled,
         textStyle = AppTypography.body,
         label = label,
@@ -96,3 +99,15 @@ fun TextField(
         ),
     )
 }
+
+@Composable
+private fun Modifier.errorBorder(isError: Boolean) =
+    if (isError) {
+        this.border(
+            width = 1.dp,
+            color = AppColors.error,
+            shape = AppShapes.extraLarge,
+        )
+    } else {
+        this
+    }

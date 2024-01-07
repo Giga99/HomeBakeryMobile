@@ -223,13 +223,13 @@ private fun RowScope.ButtonContent(
         if (LocalInspectionMode.current) {
             CircularProgressIndicator(
                 progress = 0.8f,
-                modifier = Modifier.size(16.dp),
+                modifier = Modifier.size(24.dp),
                 color = contentColor,
                 strokeWidth = 1.dp,
             )
         } else {
             CircularProgressIndicator(
-                modifier = Modifier.size(16.dp),
+                modifier = Modifier.size(24.dp),
                 color = contentColor,
                 strokeWidth = 1.dp,
             )

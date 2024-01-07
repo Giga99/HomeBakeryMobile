@@ -1,5 +1,7 @@
 package com.pki.homebakery.features.login.presentation
 
+import android.app.Activity
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -31,11 +34,14 @@ import com.pki.homebakery.ui.preview.ScreenPreviews
 import com.pki.homebakery.ui.theme.AppColors
 import com.pki.homebakery.ui.theme.AppShapes
 import com.pki.homebakery.ui.theme.AppTypography
+import com.pki.homebakery.ui.viewmodel.UIState
 import com.pki.homebakery.ui.viewmodel.collectAsStateAndEffects
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun LoginScreen() {
+    val context = LocalContext.current
+
     val viewModel = koinViewModel<LoginViewModel>()
 
     val state by viewModel.collectAsStateAndEffects { effect ->
@@ -43,6 +49,8 @@ fun LoginScreen() {
             LoginViewModel.Effect.NavigateToHome -> TODO()
         }
     }
+
+    BackHandler { (context as? Activity)?.finish() }
 
     LoginContent(
         state = state,
@@ -64,6 +72,13 @@ fun LoginContent(
         statusBarColor = AppColors.action,
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
+            Text(
+                text = "Welcome",
+                style = AppTypography.h1,
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(top = 120.dp)
+            )
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -84,7 +99,7 @@ fun LoginContent(
                     onValueChange = onUsernameChange,
                     placeholder = { Text(text = "Username", style = AppTypography.body) },
                     leadingIcon = R.drawable.ic_profile,
-                    isError = state.username.isInvalid,
+                    isError = state.username.isInvalid || state.loginStatus is UIState.Failed,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 48.dp),
@@ -94,7 +109,7 @@ fun LoginContent(
                     onValueChange = onPasswordChange,
                     placeholder = { Text(text = "Password", style = AppTypography.body) },
                     leadingIcon = R.drawable.ic_lock,
-                    isError = state.password.isInvalid,
+                    isError = state.password.isInvalid || state.loginStatus is UIState.Failed,
                     visualTransformation = PasswordVisualTransformation(),
                     modifier = Modifier
                         .fillMaxWidth()
@@ -102,18 +117,18 @@ fun LoginContent(
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 state.loginError?.let {
-                    Text(
-                        text = it,
-                        style = AppTypography.note,
-                        color = AppColors.error,
-                        textAlign = TextAlign.Center,
+                    LoginError(
+                        errorMessage = it,
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }
                 Button(
                     onClick = onLogin,
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp),
                     enabled = state.isLoginButtonEnabled,
+                    loading = state.loginStatus is UIState.Loading,
                 ) {
                     Text(text = "Login")
                 }
@@ -141,11 +156,16 @@ private fun LoginError(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
     ) {
-        Icon(painter = painterResource(R.drawable.ic_error), contentDescription = null)
+        Icon(
+            painter = painterResource(R.drawable.ic_error),
+            contentDescription = null,
+            tint = AppColors.error,
+        )
         Text(
             text = errorMessage,
             style = AppTypography.body,
             color = AppColors.error,
+            modifier = Modifier.padding(start = 4.dp),
         )
     }
 }
