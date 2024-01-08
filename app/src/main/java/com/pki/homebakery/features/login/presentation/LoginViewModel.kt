@@ -17,22 +17,10 @@ class LoginViewModel(
 ) : BaseViewModel<State, Effect>(State()) {
 
     fun onUsernameChange(username: String) =
-        updateState {
-            state.copy(
-                username = state.username.withValue(username),
-                password = state.password.withError(null),
-                loginStatus = UIState.Loaded(Unit),
-            )
-        }
+        updateState { state.copy(username = state.username.withValue(username)) }
 
     fun onPasswordChange(password: String) =
-        updateState {
-            state.copy(
-                username = state.username.withError(null),
-                password = state.password.withValue(password),
-                loginStatus = UIState.Loaded(Unit),
-            )
-        }
+        updateState { state.copy(password = state.password.withValue(password)) }
 
     fun login() = launchUniqueIfNotRunning(LOGIN_JOB) {
         if (!isUsernameFormatValid() || !isPasswordFormatValid()) {

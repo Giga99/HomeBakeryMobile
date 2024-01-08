@@ -2,7 +2,9 @@ package com.pki.homebakery.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
+import com.pki.homebakery.features.login.home.HomeDestination
 import com.pki.homebakery.features.login.presentation.LoginDestination
+import com.pki.homebakery.features.register.presentation.RegisterDestination
 import com.pki.homebakery.features.splash.presentation.SplashDestination
 import kotlinx.serialization.json.Json
 
@@ -11,6 +13,8 @@ const val DESTINATION_PARAM_KEY = "PARAM"
 val allDestinations = listOf(
     SplashDestination,
     LoginDestination,
+    RegisterDestination,
+    HomeDestination,
 )
 
 abstract class Destination {

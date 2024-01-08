@@ -1,21 +1,19 @@
-package com.pki.homebakery.features.login.presentation
+package com.pki.homebakery.features.register.presentation
 
-import android.app.Activity
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,7 +21,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.buildAnnotatedString
@@ -35,7 +32,6 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.pki.homebakery.R
 import com.pki.homebakery.features.login.home.HomeDestination
-import com.pki.homebakery.features.register.presentation.RegisterDestination
 import com.pki.homebakery.navigation.LocalAppNavigator
 import com.pki.homebakery.ui.components.Button
 import com.pki.homebakery.ui.components.Scaffold
@@ -49,38 +45,44 @@ import com.pki.homebakery.ui.viewmodel.collectAsStateAndEffects
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun LoginScreen() {
-    val context = LocalContext.current
+fun RegisterScreen() {
     val appNavigator = LocalAppNavigator.current
 
-    val viewModel = koinViewModel<LoginViewModel>()
+    val viewModel = koinViewModel<RegisterViewModel>()
 
     val state by viewModel.collectAsStateAndEffects { effect ->
         when (effect) {
-            LoginViewModel.Effect.NavigateToHome -> appNavigator.navigateTo(HomeDestination())
+            RegisterViewModel.Effect.NavigateToHome -> appNavigator.navigateTo(HomeDestination())
         }
     }
 
-    BackHandler { (context as? Activity)?.finish() }
-
-    LoginContent(
+    RegisterContent(
         state = state,
+        onFullNameChange = viewModel::onFullNameChange,
+        onPhoneNumberChange = viewModel::onPhoneNumberChange,
+        onAddressChange = viewModel::onAddressChange,
         onUsernameChange = viewModel::onUsernameChange,
         onPasswordChange = viewModel::onPasswordChange,
-        onLoginClick = viewModel::login,
-        onRegisterClick = { appNavigator.navigateTo(RegisterDestination()) }
+        onConfirmPasswordChange = viewModel::onConfirmPasswordChange,
+        onRegisterClick = viewModel::register,
+        onLoginClick = appNavigator::navigateBack,
     )
 }
 
 @Composable
-fun LoginContent(
-    state: LoginViewModel.State,
+fun RegisterContent(
+    state: RegisterViewModel.State,
+    onFullNameChange: (String) -> Unit,
+    onPhoneNumberChange: (String) -> Unit,
+    onAddressChange: (String) -> Unit,
     onUsernameChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
-    onLoginClick: () -> Unit,
+    onConfirmPasswordChange: (String) -> Unit,
     onRegisterClick: () -> Unit,
+    onLoginClick: () -> Unit,
 ) {
     val focusManager = LocalFocusManager.current
+
     Scaffold(
         containerColor = AppColors.action,
         statusBarColor = AppColors.action,
@@ -91,12 +93,11 @@ fun LoginContent(
                 contentDescription = null,
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .padding(top = 120.dp)
+                    .padding(top = 85.dp)
             )
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.5f)
                     .background(
                         AppColors.background,
                         AppShapes.extraLarge.copy(
@@ -105,9 +106,52 @@ fun LoginContent(
                         )
                     )
                     .align(Alignment.BottomCenter)
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = 16.dp)
+                    .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
+                TextField(
+                    value = state.fullName.value,
+                    onValueChange = onFullNameChange,
+                    placeholder = { Text(text = "Full Name", style = AppTypography.body) },
+                    leadingIcon = R.drawable.ic_edit_text,
+                    isError = state.fullName.isInvalid,
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                    keyboardActions = KeyboardActions(
+                        onNext = { focusManager.moveFocus(FocusDirection.Next) }
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 24.dp),
+                )
+                TextField(
+                    value = state.phoneNumber.value,
+                    onValueChange = onPhoneNumberChange,
+                    placeholder = { Text(text = "Phone Number", style = AppTypography.body) },
+                    leadingIcon = R.drawable.ic_phone,
+                    isError = state.phoneNumber.isInvalid,
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                    keyboardActions = KeyboardActions(
+                        onNext = { focusManager.moveFocus(FocusDirection.Next) }
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp),
+                )
+                TextField(
+                    value = state.address.value,
+                    onValueChange = onAddressChange,
+                    placeholder = { Text(text = "Address", style = AppTypography.body) },
+                    leadingIcon = R.drawable.ic_address,
+                    isError = state.address.isInvalid,
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                    keyboardActions = KeyboardActions(
+                        onNext = { focusManager.moveFocus(FocusDirection.Next) }
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp),
+                )
                 TextField(
                     value = state.username.value,
                     onValueChange = onUsernameChange,
@@ -120,7 +164,7 @@ fun LoginContent(
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 48.dp),
+                        .padding(top = 16.dp),
                 )
                 TextField(
                     value = state.password.value,
@@ -129,44 +173,60 @@ fun LoginContent(
                     leadingIcon = R.drawable.ic_lock,
                     isError = state.password.isInvalid,
                     visualTransformation = PasswordVisualTransformation(),
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                    keyboardActions = KeyboardActions(
+                        onNext = { focusManager.moveFocus(FocusDirection.Next) }
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp),
+                )
+                TextField(
+                    value = state.confirmPassword.value,
+                    onValueChange = onConfirmPasswordChange,
+                    placeholder = { Text(text = "Confirm Password", style = AppTypography.body) },
+                    leadingIcon = R.drawable.ic_lock,
+                    isError = state.confirmPassword.isInvalid,
+                    visualTransformation = PasswordVisualTransformation(),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                     keyboardActions = KeyboardActions(
                         onDone = {
                             focusManager.clearFocus()
-                            onLoginClick()
+                            onRegisterClick()
                         }
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 16.dp),
                 )
-                Spacer(modifier = Modifier.weight(1f))
-                state.loginError?.let {
-                    LoginError(
+                state.registerError?.let {
+                    RegisterError(
                         errorMessage = it,
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(48.dp),
                     )
                 }
                 Button(
-                    onClick = onLoginClick,
+                    onClick = onRegisterClick,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 16.dp),
-                    enabled = state.isLoginButtonEnabled,
-                    loading = state.loginStatus.isLoading,
+                        .padding(top = if (state.registerError == null) 70.dp else 10.dp),
+                    enabled = state.isRegisterButtonEnabled,
+                    loading = state.registerStatus.isLoading,
                 ) {
-                    Text(text = "Login")
+                    Text(text = "Register")
                 }
                 Text(
                     text = buildAnnotatedString {
-                        append("New here? ")
+                        append("Already have an account? ")
                         withStyle(
                             AppTypography.note.copy(
                                 color = AppColors.darkGrey,
                                 textDecoration = TextDecoration.Underline
                             ).toSpanStyle()
                         ) {
-                            append("Register")
+                            append("Log in")
                         }
                         append("!")
                     },
@@ -175,7 +235,7 @@ fun LoginContent(
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .padding(top = 16.dp)
-                        .clickable(onClick = onRegisterClick),
+                        .clickable(onClick = onLoginClick),
                 )
             }
         }
@@ -183,7 +243,7 @@ fun LoginContent(
 }
 
 @Composable
-private fun LoginError(
+private fun RegisterError(
     errorMessage: String,
     modifier: Modifier = Modifier,
 ) {
@@ -208,14 +268,18 @@ private fun LoginError(
 
 @Composable
 @ScreenPreviews
-private fun LoginPreview() {
+private fun RegisterPreview() {
     PreviewView {
-        LoginContent(
-            state = LoginViewModel.State(),
+        RegisterContent(
+            state = RegisterViewModel.State(),
+            onFullNameChange = {},
+            onPhoneNumberChange = {},
+            onAddressChange = {},
             onUsernameChange = {},
             onPasswordChange = {},
-            onLoginClick = {},
+            onConfirmPasswordChange = {},
             onRegisterClick = {},
+            onLoginClick = {},
         )
     }
 }

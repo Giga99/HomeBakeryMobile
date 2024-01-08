@@ -18,4 +18,13 @@ sealed class InputFieldError(
     data object InvalidUsernameFormat : InputFieldError("Invalid username format")
 
     data object InvalidPasswordFormat : InputFieldError("Invalid password format")
+
+    data object InvalidFullNameFormat : InputFieldError("Invalid username format")
+
+    data object InvalidAddressFormat : InputFieldError("Invalid password format")
+
+    data object InvalidPhoneNumberFormat : InputFieldError("Invalid username format")
+
+    data object PasswordAndConfirmPasswordNotMatching :
+        InputFieldError("Password and confirm password are not matching")
 }
