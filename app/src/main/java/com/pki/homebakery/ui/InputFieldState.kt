@@ -27,4 +27,6 @@ sealed class InputFieldError(
 
     data object PasswordAndConfirmPasswordNotMatching :
         InputFieldError("Password and confirm password are not matching")
+
+    data object PasswordNotCorrectFormat : InputFieldError("Password not correct")
 }
