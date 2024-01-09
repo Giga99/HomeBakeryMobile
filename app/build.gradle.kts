@@ -82,6 +82,8 @@ dependencies {
     implementation(libs.accompanist.navigation.animation)
     implementation(libs.accompanist.systemuicontroller)
 
+    implementation(libs.datastore.preferences)
+
     testImplementation(libs.junit)
     testImplementation(libs.androidx.test.ext.junit)
     testImplementation(libs.espresso.core)

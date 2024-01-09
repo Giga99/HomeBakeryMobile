@@ -1,6 +1,6 @@
 package com.pki.homebakery.features.register.domain
 
-import com.pki.homebakery.features.register.data.RegisterRequest
+import com.pki.homebakery.features.profile.domain.ProfileInfo
 
 data class RegisterInput(
     val username: String,
@@ -10,8 +10,8 @@ data class RegisterInput(
     val address: String,
 )
 
-fun RegisterInput.toRequest(): RegisterRequest =
-    RegisterRequest(
+fun RegisterInput.toProfileInfo(): ProfileInfo =
+    ProfileInfo(
         username = username,
         password = password,
         fullName = fullName,
