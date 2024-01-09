@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.pki.homebakery.R
 import com.pki.homebakery.features.settings.presentation.SettingsDestination
 import com.pki.homebakery.navigation.LocalAppNavigator
+import com.pki.homebakery.ui.LifecycleObserver
 import com.pki.homebakery.ui.components.IconButton
 import com.pki.homebakery.ui.components.Scaffold
 import com.pki.homebakery.ui.components.bar.TopAppBar
@@ -34,6 +35,8 @@ fun ProfileScreen() {
     val viewModel = koinViewModel<ProfileViewModel>()
 
     val state by viewModel.collectAsState()
+
+    LifecycleObserver(onResumed = viewModel::refresh)
 
     ProfileContent(
         state = state,

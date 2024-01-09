@@ -15,14 +15,16 @@ class ProfileViewModel(
 ) : BaseViewModel<State, Unit>(State()) {
 
     init {
-        launchInViewModel {
-            runCatching { profileService.getProfileInfo() }
-                .onSuccess { info ->
-                    updateState { state.copy(profileInfo = info.asLoaded()) }
-                }.onFailure {
-                    updateState { state.copy(profileInfo = it.asFailed()) }
-                }
-        }
+        refresh()
+    }
+
+    fun refresh() = launchInViewModel {
+        runCatching { profileService.getProfileInfo() }
+            .onSuccess { info ->
+                updateState { state.copy(profileInfo = info.asLoaded()) }
+            }.onFailure {
+                updateState { state.copy(profileInfo = it.asFailed()) }
+            }
     }
 
     data class State(

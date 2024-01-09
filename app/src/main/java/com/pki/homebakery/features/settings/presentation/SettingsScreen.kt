@@ -77,12 +77,7 @@ private fun SettingsContent(
     onLogOutClick: () -> Unit,
 ) {
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = "Settings",
-                onBackPressed = onBackClick
-            )
-        },
+        topBar = { TopAppBar(title = "Settings", onBackPressed = onBackClick) },
         bottomBar = {
             BottomAppBar {
                 Button(

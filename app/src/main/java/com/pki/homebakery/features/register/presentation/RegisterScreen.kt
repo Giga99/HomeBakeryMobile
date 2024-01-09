@@ -204,7 +204,7 @@ fun RegisterContent(
                         errorMessage = it,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(48.dp),
+                            .padding(top = 48.dp),
                     )
                 }
                 Button(
