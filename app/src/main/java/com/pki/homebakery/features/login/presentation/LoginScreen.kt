@@ -34,7 +34,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.pki.homebakery.R
-import com.pki.homebakery.features.login.home.HomeDestination
+import com.pki.homebakery.features.home.presentation.HomeDestination
 import com.pki.homebakery.features.register.presentation.RegisterDestination
 import com.pki.homebakery.navigation.LocalAppNavigator
 import com.pki.homebakery.ui.components.Button

@@ -31,7 +31,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.pki.homebakery.R
-import com.pki.homebakery.features.login.home.HomeDestination
+import com.pki.homebakery.features.home.presentation.HomeDestination
 import com.pki.homebakery.navigation.LocalAppNavigator
 import com.pki.homebakery.ui.components.Button
 import com.pki.homebakery.ui.components.Scaffold
@@ -142,7 +142,7 @@ fun RegisterContent(
                     value = state.address.value,
                     onValueChange = onAddressChange,
                     placeholder = { Text(text = "Address", style = AppTypography.body) },
-                    leadingIcon = R.drawable.ic_address,
+                    leadingIcon = R.drawable.ic_home,
                     isError = state.address.isInvalid,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                     keyboardActions = KeyboardActions(
