@@ -174,8 +174,15 @@ private fun SaveDetailsError(
 
 @Composable
 @ScreenPreviews
-private fun EditPersonalDetailsScreenPreview() {
+private fun EditPersonalDetailsPreview() {
     PreviewView {
-        EditPersonalDetailsScreen()
+        EditPersonalDetailsContent(
+            state = EditPersonalDetailsViewModel.State(),
+            onBackClick = {},
+            onFullNameChange = {},
+            onPhoneNumberChange = {},
+            onAddressChange = {},
+            onSaveDetailsClick = {},
+        )
     }
 }

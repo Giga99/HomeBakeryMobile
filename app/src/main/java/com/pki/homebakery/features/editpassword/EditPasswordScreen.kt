@@ -23,7 +23,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.pki.homebakery.R
-import com.pki.homebakery.features.editpersonaldetails.EditPersonalDetailsScreen
 import com.pki.homebakery.navigation.LocalAppNavigator
 import com.pki.homebakery.ui.components.Button
 import com.pki.homebakery.ui.components.Scaffold
@@ -179,8 +178,15 @@ private fun SaveDetailsError(
 
 @Composable
 @ScreenPreviews
-private fun EditPersonalDetailsScreenPreview() {
+private fun EditPasswordPreview() {
     PreviewView {
-        EditPersonalDetailsScreen()
+        EditPasswordContent(
+            state = EditPasswordViewModel.State(),
+            onBackClick = {},
+            onOldPasswordChange = {},
+            onNewPasswordChange = {},
+            onConfirmNewPasswordChange = {},
+            onSaveDetailsClick = {},
+        )
     }
 }
