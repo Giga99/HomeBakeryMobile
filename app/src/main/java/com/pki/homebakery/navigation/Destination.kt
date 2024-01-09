@@ -5,6 +5,7 @@ import androidx.navigation.NavBackStackEntry
 import com.pki.homebakery.features.home.presentation.HomeDestination
 import com.pki.homebakery.features.login.presentation.LoginDestination
 import com.pki.homebakery.features.register.presentation.RegisterDestination
+import com.pki.homebakery.features.settings.presentation.SettingsDestination
 import com.pki.homebakery.features.splash.presentation.SplashDestination
 import kotlinx.serialization.json.Json
 
@@ -15,6 +16,7 @@ val allDestinations = listOf(
     LoginDestination,
     RegisterDestination,
     HomeDestination,
+    SettingsDestination,
 )
 
 abstract class Destination {

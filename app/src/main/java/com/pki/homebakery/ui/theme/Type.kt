@@ -73,8 +73,8 @@ data class Typography(
     val note: TextStyle = TextStyle(
         fontFamily = LatoFontFamily,
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 12.sp,
+        fontSize = 12.sp,
+        lineHeight = 14.sp,
         lineHeightStyle = lineHeightStyle,
         platformStyle = platformStyle,
     ),
