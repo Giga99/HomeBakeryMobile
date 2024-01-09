@@ -20,7 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.pki.homebakery.R
 import com.pki.homebakery.features.cart.CartScreen
-import com.pki.homebakery.features.dashboard.DashboardScreen
+import com.pki.homebakery.features.dashboard.presentation.DashboardScreen
 import com.pki.homebakery.features.home.presentation.HomeViewModel.BottomNavigationItem
 import com.pki.homebakery.features.notifications.NotificationsScreen
 import com.pki.homebakery.features.profile.presentation.ProfileScreen

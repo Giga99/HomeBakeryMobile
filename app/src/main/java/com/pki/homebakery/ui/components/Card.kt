@@ -21,12 +21,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.pki.homebakery.ui.utils.elevatedShadow
 import com.pki.homebakery.ui.preview.PreviewView
 import com.pki.homebakery.ui.preview.ScreenPreviews
 import com.pki.homebakery.ui.theme.AppColors
 import com.pki.homebakery.ui.theme.AppShapes
 import com.pki.homebakery.ui.theme.disabled
+import com.pki.homebakery.ui.utils.elevatedShadow
 
 @Composable
 fun Card(
@@ -145,7 +145,7 @@ object CardDefaults {
     val shape
         @Composable
         @ReadOnlyComposable
-        get() = AppShapes.medium
+        get() = AppShapes.large
 
     val elevation
         @Composable

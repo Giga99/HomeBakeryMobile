@@ -8,12 +8,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.pki.homebakery.ui.preview.ComponentPreviews
 import com.pki.homebakery.ui.preview.PreviewView
+import com.pki.homebakery.ui.theme.AppColors
 
 // TODO: change to final design
 @Composable
 fun ContentLoading(modifier: Modifier = Modifier) {
     Box(modifier, contentAlignment = Alignment.Center) {
-        CircularProgressIndicator()
+        CircularProgressIndicator(color = AppColors.darkGrey)
     }
 }
 
