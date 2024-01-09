@@ -21,6 +21,10 @@ class PrefsService(context: Context) {
 
     suspend fun getCurrentUser() = pref.data.map { it[CURRENT_USER] }.firstOrNull()
 
+    suspend fun removeCurrentUser() {
+        pref.edit { it.remove(CURRENT_USER) }
+    }
+
     companion object {
         private val CURRENT_USER = stringPreferencesKey("CURRENT_USER")
     }

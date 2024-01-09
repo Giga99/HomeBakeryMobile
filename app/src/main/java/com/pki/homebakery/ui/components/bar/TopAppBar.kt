@@ -25,9 +25,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.pki.homebakery.ui.components.Surface
 import com.pki.homebakery.R
 import com.pki.homebakery.ui.components.IconButton
+import com.pki.homebakery.ui.components.Surface
 import com.pki.homebakery.ui.preview.ComponentPreviews
 import com.pki.homebakery.ui.preview.PreviewView
 import com.pki.homebakery.ui.theme.AppColors
@@ -115,7 +115,9 @@ fun TopAppBar(
         title = { TopAppBarTitle(text = title) },
         modifier = modifier,
         subtitle = subtitle?.let { { TopAppBarSubtitle(text = it) } },
-        navigationIcon = onBackPressed?.let { { TopAppBarBackButton(onClick = it) } },
+        navigationIcon = onBackPressed?.let {
+            { TopAppBarBackButton(onClick = it, tint = AppColors.darkGrey) }
+        },
         topAppBarActions = topAppBarActions,
         elevated = elevated,
         color = color,
@@ -128,7 +130,7 @@ fun TopAppBarTitle(
     text: String,
     modifier: Modifier = Modifier,
 ) {
-    Text(text = text.uppercase(), modifier = modifier, style = AppTypography.note)
+    Text(text = text.uppercase(), modifier = modifier, style = AppTypography.h3)
 }
 
 @Composable
@@ -202,7 +204,7 @@ object TopAppBarDefaults {
     val contentColor: Color
         @Composable
         @ReadOnlyComposable
-        get() = AppColors.grey
+        get() = AppColors.text
 }
 
 @ComponentPreviews

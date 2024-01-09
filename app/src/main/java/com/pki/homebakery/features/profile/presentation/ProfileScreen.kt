@@ -52,7 +52,7 @@ private fun ProfileContent(
                 topAppBarActions = {
                     IconButton(
                         onClick = onSettingsClick,
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(48.dp),
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_settings),
