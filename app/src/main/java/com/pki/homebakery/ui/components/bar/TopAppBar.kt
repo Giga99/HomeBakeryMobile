@@ -130,7 +130,7 @@ fun TopAppBarTitle(
     text: String,
     modifier: Modifier = Modifier,
 ) {
-    Text(text = text.uppercase(), modifier = modifier, style = AppTypography.h3)
+    Text(text = text.uppercase(), modifier = modifier, style = AppTypography.h3Bold)
 }
 
 @Composable

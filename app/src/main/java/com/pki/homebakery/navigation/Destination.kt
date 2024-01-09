@@ -5,6 +5,7 @@ import androidx.navigation.NavBackStackEntry
 import com.pki.homebakery.features.editpassword.EditPasswordDestination
 import com.pki.homebakery.features.editpersonaldetails.EditPersonalDetailsDestination
 import com.pki.homebakery.features.home.presentation.HomeDestination
+import com.pki.homebakery.features.homebakeryinfo.HomeBakeryInfoDestination
 import com.pki.homebakery.features.login.presentation.LoginDestination
 import com.pki.homebakery.features.register.presentation.RegisterDestination
 import com.pki.homebakery.features.settings.presentation.SettingsDestination
@@ -21,6 +22,7 @@ val allDestinations = listOf(
     SettingsDestination,
     EditPersonalDetailsDestination,
     EditPasswordDestination,
+    HomeBakeryInfoDestination,
 )
 
 abstract class Destination {

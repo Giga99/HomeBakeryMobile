@@ -29,6 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.pki.homebakery.R
 import com.pki.homebakery.features.dashboard.domain.Cake
+import com.pki.homebakery.features.homebakeryinfo.HomeBakeryInfoDestination
 import com.pki.homebakery.navigation.LocalAppNavigator
 import com.pki.homebakery.ui.components.Card
 import com.pki.homebakery.ui.components.IconButton
@@ -55,7 +56,9 @@ fun DashboardScreen() {
         onCakeClick = { cake ->
 
         },
-        onInfoClick = {},
+        onInfoClick = {
+            appNavigator.navigateTo(HomeBakeryInfoDestination())
+        },
     )
 }
 
