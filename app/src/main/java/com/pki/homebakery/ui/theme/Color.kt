@@ -38,7 +38,7 @@ data class Colors(
     val action: Color,
     val error: Color,
 ) {
-    val line = grey.copy(0.5f)
+    val line = grey
     val cardOutline = grey.copy(0.2f)
 
     @Composable

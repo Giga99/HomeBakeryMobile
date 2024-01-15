@@ -1,4 +1,4 @@
-package com.pki.homebakery.features.homebakeryinfo
+package com.pki.homebakery.features.homebakeryinfo.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

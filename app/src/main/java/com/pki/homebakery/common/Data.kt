@@ -3,6 +3,7 @@ package com.pki.homebakery.common
 import com.pki.homebakery.R
 import com.pki.homebakery.features.dashboard.domain.Cake
 import com.pki.homebakery.features.dashboard.domain.Comment
+import com.pki.homebakery.features.notifications.domain.Notification
 import com.pki.homebakery.features.profile.domain.ProfileInfo
 import java.time.Instant
 import java.time.temporal.ChronoUnit
@@ -235,4 +236,11 @@ var cakes = listOf(
             ),
         )
     ),
+)
+
+val notifications = listOf(
+    Notification(orderId = "12345", isOrderAccepted = true),
+    Notification(orderId = "67890", isOrderAccepted = false),
+    Notification(orderId = "14523", isOrderAccepted = false),
+    Notification(orderId = "28943", isOrderAccepted = true),
 )
