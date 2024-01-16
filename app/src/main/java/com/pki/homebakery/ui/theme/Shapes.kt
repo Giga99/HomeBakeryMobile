@@ -12,11 +12,11 @@ inline val AppShapes
     @ReadOnlyComposable
     get() = MaterialTheme.shapes
 
-private val ShapesExtraSmallCornerSize = 4.dp
-private val ShapesSmallCornerSize = 8.dp
-private val ShapesMediumCornerSize = 12.dp
-private val ShapesLargeCornerSize = 16.dp
-private val ShapesExtraLargeCornerSize = 20.dp
+private val ShapesExtraSmallCornerSize = 8.dp
+private val ShapesSmallCornerSize = 12.dp
+private val ShapesMediumCornerSize = 16.dp
+private val ShapesLargeCornerSize = 20.dp
+private val ShapesExtraLargeCornerSize = 24.dp
 
 internal val Shapes = Shapes(
     extraSmall = RoundedCornerShape(ShapesExtraSmallCornerSize),

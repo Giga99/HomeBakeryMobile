@@ -20,7 +20,7 @@ fun ModalBottomSheet(
     androidx.compose.material3.ModalBottomSheet(
         onDismissRequest = onDismissRequest,
         modifier = Modifier,
-        shape = AppShapes.large.copy(bottomEnd = CornerSize(0.dp), bottomStart = CornerSize(0.dp)),
+        shape = AppShapes.medium.copy(bottomEnd = CornerSize(0.dp), bottomStart = CornerSize(0.dp)),
         containerColor = AppColors.background,
         contentColor = AppColors.text,
         scrimColor = Color.Black.copy(alpha = 0.32f),

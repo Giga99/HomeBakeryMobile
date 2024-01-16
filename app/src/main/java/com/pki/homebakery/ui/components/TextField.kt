@@ -40,7 +40,7 @@ fun TextField(
         value = value,
         onValueChange = onValueChange,
         modifier = modifier
-            .elevatedShadow(10.dp, AppShapes.extraLarge)
+            .elevatedShadow(10.dp, AppShapes.large)
             .errorBorder(isError),
         enabled = enabled,
         textStyle = AppTypography.body,
@@ -60,7 +60,7 @@ fun TextField(
         maxLines = maxLines,
         minLines = 1,
         interactionSource = interactionSource,
-        shape = AppShapes.extraLarge,
+        shape = AppShapes.large,
         colors = TextFieldDefaults.colors(
             focusedTextColor = AppColors.darkGrey,
             unfocusedTextColor = AppColors.darkGrey,
@@ -106,7 +106,7 @@ private fun Modifier.errorBorder(isError: Boolean) =
         this.border(
             width = 1.dp,
             color = AppColors.error,
-            shape = AppShapes.extraLarge,
+            shape = AppShapes.large,
         )
     } else {
         this

@@ -145,7 +145,7 @@ object CardDefaults {
     val shape
         @Composable
         @ReadOnlyComposable
-        get() = AppShapes.large
+        get() = AppShapes.medium
 
     val elevation
         @Composable

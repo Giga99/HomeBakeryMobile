@@ -100,7 +100,7 @@ fun RegisterContent(
                     .fillMaxWidth()
                     .background(
                         AppColors.background,
-                        AppShapes.extraLarge.copy(
+                        AppShapes.large.copy(
                             bottomEnd = CornerSize(0.dp),
                             bottomStart = CornerSize(0.dp)
                         )

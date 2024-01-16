@@ -18,7 +18,7 @@ val blackForestCake = Cake(
     title = "Black Forest Cake",
     subtitle = "Black forest cake with cream",
     icon = R.drawable.ic_black_forest_cake,
-    price = "50 €",
+    price = 50,
     description = "Indulge in a world where the aroma of freshly baked treats fills the air and every bite is a piece of heaven. Home Bakery is your go-to app for ordering mouth-watering cakes, cupcakes, and pastries right from the comfort of your home.",
     ingredients = listOf(
         "2 cups all-purpose flour",
@@ -59,7 +59,7 @@ var cakes = listOf(
         title = "Low Gluten Cake",
         subtitle = "Low gluten cake for the birthday",
         icon = R.drawable.ic_low_gluten_cake,
-        price = "70 €",
+        price = 70,
         description = "Indulge in a world where the aroma of freshly baked treats fills the air and every bite is a piece of heaven. Home Bakery is your go-to app for ordering mouth-watering cakes, cupcakes, and pastries right from the comfort of your home.",
         ingredients = listOf(
             "2 cups all-purpose flour",
@@ -97,7 +97,7 @@ var cakes = listOf(
         title = "Chocolate Chip Muffin",
         subtitle = "Tasty chocolate chip muffin",
         icon = R.drawable.ic_chocolate_chip_muffin,
-        price = "50 €",
+        price = 50,
         description = "Indulge in a world where the aroma of freshly baked treats fills the air and every bite is a piece of heaven. Home Bakery is your go-to app for ordering mouth-watering cakes, cupcakes, and pastries right from the comfort of your home.",
         ingredients = listOf(
             "2 cups all-purpose flour",
@@ -135,7 +135,7 @@ var cakes = listOf(
         title = "Chocolate Birthday Cake",
         subtitle = "The best chocolate cake for the birthday",
         icon = R.drawable.ic_chocolate_birthday_cake,
-        price = "85 €",
+        price = 85,
         description = "Indulge in a world where the aroma of freshly baked treats fills the air and every bite is a piece of heaven. Home Bakery is your go-to app for ordering mouth-watering cakes, cupcakes, and pastries right from the comfort of your home.",
         ingredients = listOf(
             "2 cups all-purpose flour",
@@ -173,7 +173,7 @@ var cakes = listOf(
         title = "Vanilla Birthday Cake",
         subtitle = "Vanilla cake for the birthday",
         icon = R.drawable.ic_vanilla_birthday_cake,
-        price = "55 €",
+        price = 55,
         description = "Indulge in a world where the aroma of freshly baked treats fills the air and every bite is a piece of heaven. Home Bakery is your go-to app for ordering mouth-watering cakes, cupcakes, and pastries right from the comfort of your home.",
         ingredients = listOf(
             "2 cups all-purpose flour",
@@ -211,7 +211,7 @@ var cakes = listOf(
         title = "Chantilly Cake",
         subtitle = "Fluffy and sweat cake with berry cream filling",
         icon = R.drawable.ic_chantilly_cake,
-        price = "50 €",
+        price = 50,
         description = "Indulge in a world where the aroma of freshly baked treats fills the air and every bite is a piece of heaven. Home Bakery is your go-to app for ordering mouth-watering cakes, cupcakes, and pastries right from the comfort of your home.",
         ingredients = listOf(
             "2 cups all-purpose flour",

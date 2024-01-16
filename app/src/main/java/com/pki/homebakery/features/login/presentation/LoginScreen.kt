@@ -99,7 +99,7 @@ fun LoginContent(
                     .fillMaxHeight(0.5f)
                     .background(
                         AppColors.background,
-                        AppShapes.extraLarge.copy(
+                        AppShapes.large.copy(
                             bottomEnd = CornerSize(0.dp),
                             bottomStart = CornerSize(0.dp)
                         )

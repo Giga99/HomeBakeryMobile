@@ -297,7 +297,7 @@ object ButtonDefaults {
         vertical = ButtonVerticalPadding,
     )
 
-    val Shape @Composable get() = AppShapes.extraLarge
+    val Shape @Composable get() = AppShapes.large
 
     val outlinedBorder: BorderStroke
         @Composable get() = BorderStroke(
