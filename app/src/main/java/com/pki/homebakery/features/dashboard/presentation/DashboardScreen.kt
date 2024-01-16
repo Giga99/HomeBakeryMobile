@@ -29,6 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.pki.homebakery.R
 import com.pki.homebakery.features.dashboard.domain.Cake
+import com.pki.homebakery.features.details.presentation.CakeDetailsDestination
 import com.pki.homebakery.features.homebakeryinfo.presentation.HomeBakeryInfoDestination
 import com.pki.homebakery.navigation.LocalAppNavigator
 import com.pki.homebakery.ui.components.Card
@@ -54,7 +55,7 @@ fun DashboardScreen() {
     DashboardContent(
         state = state,
         onCakeClick = { cake ->
-
+            appNavigator.navigateTo(CakeDetailsDestination(cake.id))
         },
         onInfoClick = {
             appNavigator.navigateTo(HomeBakeryInfoDestination())
@@ -92,14 +93,15 @@ private fun DashboardContent(
     ) {
         FullScreenContent(state = state.cakesStatus) {
             LazyColumn(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 24.dp, bottom = 16.dp),
             ) {
                 if (state.promotions?.isNotEmpty() == true) {
                     item {
                         Text(
                             text = "Promotions",
                             style = AppTypography.h2Bold,
-                            modifier = Modifier.padding(top = 24.dp)
                         )
                     }
                     item {
@@ -173,7 +175,7 @@ private fun PromotionItem(
                 painter = painterResource(cake.icon),
                 contentDescription = null,
                 contentScale = ContentScale.FillBounds,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.size(190.dp, 164.dp),
             )
             Text(
                 text = cake.title,

@@ -8,6 +8,7 @@ data class Cake(
     val title: String,
     val subtitle: String,
     @DrawableRes val icon: Int,
+    val price: String,
     val description: String,
     val ingredients: List<String>,
     val comments: List<Comment>

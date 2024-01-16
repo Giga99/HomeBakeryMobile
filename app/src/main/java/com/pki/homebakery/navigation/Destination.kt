@@ -1,7 +1,9 @@
 package com.pki.homebakery.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
+import com.pki.homebakery.features.details.presentation.CakeDetailsDestination
 import com.pki.homebakery.features.editpassword.EditPasswordDestination
 import com.pki.homebakery.features.editpersonaldetails.EditPersonalDetailsDestination
 import com.pki.homebakery.features.home.presentation.HomeDestination
@@ -10,9 +12,6 @@ import com.pki.homebakery.features.login.presentation.LoginDestination
 import com.pki.homebakery.features.register.presentation.RegisterDestination
 import com.pki.homebakery.features.settings.presentation.SettingsDestination
 import com.pki.homebakery.features.splash.presentation.SplashDestination
-import kotlinx.serialization.json.Json
-
-const val DESTINATION_PARAM_KEY = "PARAM"
 
 val allDestinations = listOf(
     SplashDestination,
@@ -23,15 +22,22 @@ val allDestinations = listOf(
     EditPersonalDetailsDestination,
     EditPasswordDestination,
     HomeBakeryInfoDestination,
+    CakeDetailsDestination,
 )
 
-abstract class Destination {
-    private val hasParams: Boolean = this is ParameterizedDestination<*>
+abstract class Destination(
+    namedNavArguments: List<NamedNavArgument> = emptyList()
+) {
+    private val hasParams: Boolean = namedNavArguments.isNotEmpty()
 
     protected val route: String = this::class.qualifiedName.orEmpty()
 
     val fullRoute: String = if (hasParams) {
-        "$route/{$DESTINATION_PARAM_KEY}"
+        val builder = StringBuilder("$route?")
+        namedNavArguments.forEach { namedNavArgument ->
+            builder.append("${namedNavArgument.name}={${namedNavArgument.name}}&")
+        }
+        builder.removeSuffix("&").toString()
     } else {
         route
     }
@@ -44,19 +50,24 @@ abstract class NoParamsDestination : Destination() {
     operator fun invoke(): String = route
 }
 
-abstract class ParameterizedDestination<T : DestinationParam> : Destination() {
-    operator fun invoke(param: T): String {
-        val paramJson = encodeParam(param)
-        return "$route/$paramJson"
-    }
+abstract class ParameterizedDestination(
+    namedNavArguments: List<NamedNavArgument>
+) : Destination(namedNavArguments) {
 
-    abstract fun encodeParam(param: T): String
+    protected fun buildRouteWithParams(vararg params: DestinationParam): String {
+        var routeWithParams = fullRoute
+        params.forEach { param ->
+            routeWithParams = routeWithParams.replace("{${param.name}}", param.value)
+        }
+        return routeWithParams
+    }
 }
 
-interface DestinationParam
+data class DestinationParam(
+    val name: String,
+    val value: String,
+)
 
-inline fun <reified T : DestinationParam> NavBackStackEntry.getDestinationParam(): T {
-    val paramJson =
-        arguments?.getString(DESTINATION_PARAM_KEY) ?: throw IllegalStateException("No param found")
-    return Json.decodeFromString<T>(paramJson)
+fun NavBackStackEntry.getDestinationParam(paramKey: String): String {
+    return arguments?.getString(paramKey) ?: error("No param found")
 }
