@@ -23,3 +23,7 @@ fun Long.secondsToPrettyString(): String {
         }
     }
 }
+
+fun Int.priceToPrettyString(): String {
+    return "$this €"
+}

@@ -20,4 +20,8 @@ class OrderService {
     suspend fun getCart(): List<CartItem> {
         return currentCart.values.toList()
     }
+
+    suspend fun orderCart() {
+        currentCart.clear()
+    }
 }

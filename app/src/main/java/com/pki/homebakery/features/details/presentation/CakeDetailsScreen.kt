@@ -39,6 +39,7 @@ import com.pki.homebakery.ui.components.bar.rememberElevateTopBar
 import com.pki.homebakery.ui.components.content.FullScreenContent
 import com.pki.homebakery.ui.preview.PreviewView
 import com.pki.homebakery.ui.preview.ScreenPreviews
+import com.pki.homebakery.ui.priceToPrettyString
 import com.pki.homebakery.ui.secondsToPrettyString
 import com.pki.homebakery.ui.theme.AppColors
 import com.pki.homebakery.ui.theme.AppShapes
@@ -164,7 +165,7 @@ private fun CakeDetailsContent(
                                 .padding(end = 16.dp)
                         )
                         Text(
-                            text = "${cake.price} €",
+                            text = cake.price.priceToPrettyString(),
                             style = AppTypography.bodyBold,
                         )
                     }
@@ -310,7 +311,7 @@ private fun CakeDetailsBottomBar(
                 onClick = onAddToCartClick,
                 modifier = Modifier.weight(1f),
             ) {
-                Text(text = "Add for $currentPrice €")
+                Text(text = "Add for ${currentPrice.priceToPrettyString()}")
             }
         }
     }
@@ -340,7 +341,7 @@ private fun CakeAmountInput(
         Text(
             text = currentAmount.toString(),
             style = AppTypography.h3Bold,
-            modifier = Modifier.padding(horizontal = 16.dp),
+            modifier = Modifier.padding(horizontal = 8.dp),
         )
         IconButton(onClick = onIncrementClick) {
             Icon(
