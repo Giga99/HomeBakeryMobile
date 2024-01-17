@@ -1,7 +1,6 @@
 package com.pki.homebakery.features.details.presentation
 
 import com.pki.homebakery.features.cart.data.OrderService
-import com.pki.homebakery.features.cart.domain.CartItem
 import com.pki.homebakery.features.dashboard.domain.Cake
 import com.pki.homebakery.features.details.data.CakeDetailsService
 import com.pki.homebakery.features.details.presentation.CakeDetailsViewModel.Effect
@@ -51,6 +50,10 @@ class CakeDetailsViewModel(
 
     fun dismissDialog() {
         updateState { state.copy(dialogContent = null) }
+    }
+
+    fun refresh() {
+        fetchCakeDetails()
     }
 
     private fun showDialog(dialogContent: DialogContent) {

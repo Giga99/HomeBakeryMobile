@@ -29,4 +29,6 @@ sealed class InputFieldError(
         InputFieldError("Password and confirm password are not matching")
 
     data object PasswordNotCorrectFormat : InputFieldError("Password not correct")
+
+    data object InvalidCommentFormat : InputFieldError("Invalid comment format")
 }

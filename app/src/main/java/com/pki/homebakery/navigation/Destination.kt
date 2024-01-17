@@ -3,6 +3,7 @@ package com.pki.homebakery.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
+import com.pki.homebakery.features.addcomment.presentation.AddCommentDestination
 import com.pki.homebakery.features.details.presentation.CakeDetailsDestination
 import com.pki.homebakery.features.editpassword.EditPasswordDestination
 import com.pki.homebakery.features.editpersonaldetails.EditPersonalDetailsDestination
@@ -23,6 +24,7 @@ val allDestinations = listOf(
     EditPasswordDestination,
     HomeBakeryInfoDestination,
     CakeDetailsDestination,
+    AddCommentDestination,
 )
 
 abstract class Destination(

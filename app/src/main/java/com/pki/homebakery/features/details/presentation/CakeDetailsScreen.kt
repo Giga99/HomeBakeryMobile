@@ -24,9 +24,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.pki.homebakery.R
 import com.pki.homebakery.common.blackForestCake
+import com.pki.homebakery.features.addcomment.presentation.AddCommentDestination
 import com.pki.homebakery.features.dashboard.domain.Comment
 import com.pki.homebakery.features.details.presentation.CakeDetailsViewModel.DialogContent
 import com.pki.homebakery.navigation.LocalAppNavigator
+import com.pki.homebakery.ui.LifecycleObserver
 import com.pki.homebakery.ui.components.Button
 import com.pki.homebakery.ui.components.HorizontalDivider
 import com.pki.homebakery.ui.components.IconButton
@@ -59,10 +61,19 @@ fun CakeDetailsScreen(cakeId: String) {
         }
     }
 
+    LifecycleObserver(onResumed = viewModel::refresh)
+
     CakeDetailsContent(
         state = state,
         onBackClick = appNavigator::navigateBack,
-        onAddCommentClick = {},
+        onAddCommentClick = {
+            appNavigator.navigateTo(
+                AddCommentDestination(
+                    state.cake?.id.orEmpty(),
+                    state.cake?.title.orEmpty()
+                )
+            )
+        },
         onIncrementClick = viewModel::onIncreaseAmountClick,
         onDecrementClick = viewModel::onDecreaseAmountClick,
         onAddToCartClick = viewModel::addToCart,
