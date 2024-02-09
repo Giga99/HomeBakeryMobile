@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.pki.homebakery.features.notifications.domain.Notification
 import com.pki.homebakery.ui.components.HorizontalDivider
 import com.pki.homebakery.ui.components.Scaffold
+import com.pki.homebakery.ui.components.clickableThrottled
 import com.pki.homebakery.ui.components.content.FullScreenContent
 import com.pki.homebakery.ui.preview.PreviewView
 import com.pki.homebakery.ui.preview.ScreenPreviews
@@ -30,12 +31,16 @@ fun NotificationsScreen() {
 
     val state by viewModel.collectAsState()
 
-    NotificationsContent(state)
+    NotificationsContent(
+        state = state,
+        refreshNotifications = viewModel::refresh,
+    )
 }
 
 @Composable
 private fun NotificationsContent(
     state: NotificationsViewModel.State,
+    refreshNotifications: () -> Unit,
 ) {
     Scaffold {
         FullScreenContent(state = state.notificationsStatus) { notifications ->
@@ -49,7 +54,8 @@ private fun NotificationsContent(
                     style = AppTypography.h2Bold,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 80.dp),
+                        .padding(top = 80.dp)
+                        .clickableThrottled(onClick = refreshNotifications),
                     textAlign = TextAlign.Center,
                 )
                 LazyColumn(
@@ -98,6 +104,9 @@ private fun Notification.getNotificationTextColor(): Color =
 @ScreenPreviews
 private fun NotificationsPreview() {
     PreviewView {
-        NotificationsContent(NotificationsViewModel.State())
+        NotificationsContent(
+            state = NotificationsViewModel.State(),
+            refreshNotifications = {},
+        )
     }
 }
